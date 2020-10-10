@@ -1,14 +1,25 @@
+/**
+ * The test suite for the MiniRiskGame. 
+ *
+ * @author Iren Azra Coskun
+ * @version October 10,2020
+ */
 package game;
+
+
 
 public class RiskTest {
     public static GameBoard gb = new GameBoard();
     
+
+    //tests the getSoldier() method in riskPlayer
     static void testGetSoldiers() {
         riskPlayer f = gb.firstP;
         f.getSoldiers(23);
         assert (f.numSoldiers == 23);
     }
 
+    //tests the drop() method in riskPlayer
     static void testDrop(){
         riskPlayer f = gb.firstP;
         Country c = gb.allCountries.get("Iran");
@@ -16,6 +27,7 @@ public class RiskTest {
         assert (f.countries.isEmpty());
     }
 
+    //Tests the neighbors of the countries in the game
     static void testNeighbors() {
         Country i = gb.allCountries.get("Iran");
         Country t = gb.allCountries.get("Turkey");

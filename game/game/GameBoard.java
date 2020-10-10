@@ -1,3 +1,19 @@
+/**
+ * The GameBoard class for the implementation of a smaller version of famous strategy game Risk: MiniRiskGame. 
+ *There are two players, and 8 countries in this game.
+ *The first player to own 5 countries wins the game!
+ *First player,f, starts from Iran while the second player,s, starts from Poland.
+ *A player can put soldiers on the lands that they own, or they can invade a neighboring land.
+ *Everyturn a player gets new soldiers. The number of soldiers that they get is equal to the half the number of soldiers they did not use last round plus 1.
+ *If a player tries to invade a country that already has foreign solders on it,players roll one dice each.
+ *What they get, gets multiplied with the number of soldiers they have on the land or they are attacking with.
+ *Therefore, the more soldiers you have on a country, the more protected it will be.
+ *Similarly, if you attack with more soldiers, your attack gets stronger!
+ *But, there is always an element of chance, so good luck!!
+ *
+ * @author Iren Azra Coskun
+ * @version October 10,2020
+ */
 package game;
 
 import java.util.*;
@@ -9,8 +25,12 @@ public class GameBoard {
     public riskPlayer secondP; 
     public Map<String,Country> allCountries;
 
+    /**
+     * Initializes a new GameBoard
+     */
     public GameBoard() {
 
+        //Creates the 8 countries
         Country Turkey =  new Country("Turkey");
         Country Armenia =  new Country("Armenia");
         Country Russia =  new Country("Russia");
@@ -20,9 +40,10 @@ public class GameBoard {
         Country Iran =  new Country("Iran");
         Country Bulgaria =  new Country("Bulgaria");
 
+        //All the countries are stored in a HashMap
         Map<String,Country> everyCountry = new HashMap<String, Country>();
+        //A placeholder player
         riskPlayer noone = new riskPlayer(new ArrayList<>(),"noone", everyCountry);
-
         everyCountry.put(Turkey.name,Turkey);
         everyCountry.put(Armenia.name,Armenia);
         everyCountry.put(Russia.name,Russia);
@@ -32,6 +53,7 @@ public class GameBoard {
         everyCountry.put(Iran.name,Iran);
         everyCountry.put(Bulgaria.name,Bulgaria);
 
+        //Every country is assigned to the placeholder player. 
         Turkey.assignOwner(noone);
         Armenia.assignOwner(noone);
         Russia.assignOwner(noone);
@@ -42,6 +64,7 @@ public class GameBoard {
         Bulgaria.assignOwner(noone);
   
 
+        //The neighbor information is encoded
         Turkey.addNeighbor(Armenia);
         Turkey.addNeighbor(Greece);
         Turkey.addNeighbor(Iran);
@@ -62,10 +85,13 @@ public class GameBoard {
         Bulgaria.addNeighbor(Greece);
 
         
+        //Create the players' country lists
         ArrayList<Country> firstPlayersCountries = new ArrayList<Country>(); 
         firstPlayersCountries.add(Iran);
         ArrayList<Country> secondPlayersCountries = new ArrayList<Country>(); 
         secondPlayersCountries.add(Poland);
+
+        //Create players
         riskPlayer first = new riskPlayer(firstPlayersCountries, "first",everyCountry);
         Iran.assignOwner(first);
         riskPlayer second = new riskPlayer(secondPlayersCountries,"second",everyCountry);
@@ -76,6 +102,10 @@ public class GameBoard {
         allCountries = everyCountry;
 
     }
+
+    /**
+     * Prints the game rules
+     */
     public void printGameRules () {
         System.out.println("--------------------------------------");
         System.out.println("------------GAME RULES----------------");
@@ -95,6 +125,9 @@ public class GameBoard {
 
     }
 
+    /**
+     * Prints the game state with information about which players own which countries and how many soldiers are placed in each country.
+     */
     public void printGameState () {
         String p = "";
         String u="";
@@ -153,17 +186,22 @@ public class GameBoard {
 
     public static void main (String[] args) {
 
+        //Initialize the game board and print the game rules
         GameBoard gb = new GameBoard();
         gb.printGameRules();
 
-        
+        //Initially give 3 soldiers to each player
         gb.firstP.getSoldiers(3);
         gb.secondP.getSoldiers(3);
+        
         gb.printGameState();
+    
+
         Boolean firstsTurn = true; 
         while (true) {
-
+            //first player places soldiers
             if (firstsTurn) {
+                //each turn, players get new soldiers
                 gb.firstP.getSoldiers( 1 + gb.firstP.numSoldiers/2);
                 firstsTurn = false; 
                 if ( gb.firstP.numSoldiers < 1) {
@@ -171,10 +209,11 @@ public class GameBoard {
                     continue;
                 }
                 
-                
                 System.out.println("First player's turn! First player has " + gb.firstP.numSoldiers + " soldiers to place.");
                 gb.firstP.placeArmies();
                 gb.printGameState();
+                
+                //is the game over?
                 if (gb.firstP.didIWin()){
                     System.out.println("First player owns: ");
                     for (int i = 0; i< gb.firstP.theCountries.size(); i ++) {
@@ -184,7 +223,9 @@ public class GameBoard {
                     System.out.println("First player won!");
                     break;
                 }
+            //second player places soldiers
             } else {
+                //each turn, players get new soldiers
                 gb.secondP.getSoldiers(1 + gb.secondP.numSoldiers/2);
                 firstsTurn = true; 
                 if (gb.secondP.numSoldiers < 1) {
@@ -194,6 +235,7 @@ public class GameBoard {
                 System.out.println("Second player's turn!");
                 gb.secondP.placeArmies();
                 gb.printGameState();
+                //is the game over?
                 if (gb.secondP.didIWin()){
                     System.out.println("Second player owns: ");
                     for (int i = 0; i< gb.secondP.theCountries.size(); i ++) {
