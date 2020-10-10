@@ -1,13 +1,13 @@
 # MiniRiskGame
 A mini version of famous strategy game Risk: MiniRiskGame. 
 
-##Game Rules
- *There are two players, and 8 countries in this game.
- *The first player to own 5 countries wins the game!
- *First player,f, starts from Iran while the second player,s, starts from Poland.
- *A player can put soldiers on the lands that they own, or they can invade a neighboring land.
- *Every turn a player gets new soldiers. The number of soldiers that they get is equal to the half the number of soldiers they did not use last round plus 1.
- *If a player tries to invade a country that already has foreign solders on it,players roll one dice each.What they get, gets multiplied with the number of soldiers they have on the land or they are attacking with.Therefore, the more soldiers you have on a country, the more protected it will be.Similarly, if you attack with more soldiers, your attack gets stronger! But, there is always an element of chance, so good luck!!
+## Game Rules
+ -There are two players, and 8 countries in this game.
+ -The first player to own 5 countries wins the game!
+ -First player,f, starts from Iran while the second player,s, starts from Poland.
+ -A player can put soldiers on the lands that they own, or they can invade a neighboring land.
+ -Every turn a player gets new soldiers. The number of soldiers that they get is equal to the half the number of soldiers they did not use last round plus 1.
+ -If a player tries to invade a country that already has foreign solders on it,players roll one dice each.What they get, gets multiplied with the number of soldiers they have on the land or they are attacking with.Therefore, the more soldiers you have on a country, the more protected it will be.Similarly, if you attack with more soldiers, your attack gets stronger! But, there is always an element of chance, so good luck!!
 
 ## Technologies
 
@@ -29,7 +29,7 @@ After the player choses a country, they need to determine how many soldiers they
 After this turn ends, another game map is printed. We can see that now the first player also owns Armenia, and they have placed 1 soldier on it. 
 
 
-##Inspiration
+## Inspiration
 This project was inspired by famous strategy game Risk. 
 
 ## Testing
