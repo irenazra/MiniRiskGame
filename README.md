@@ -16,17 +16,19 @@ Java SE 12
 ## How to Play
 This game is played through the console. The status of the game can be tracked via the game map that is printed at the beginning of each turn.  The square brackets around the names of the countries represent the borders. For example, one can go from Poland to Ukraine but cannot travel to Bulgaria from Ukraine since the two countries do not share a border. The letters s (second) and f (first) indicate who owns a particular country. If there is not letter inside a country, this means that this country is not owned by any player yet. The integers written inside the countries demonstrate how many soldiers are placed. Below is how the map looks at the beginning of the game. See that Poland is owned by s with 0 soldiers in it, and Iran is owned by first. 
 
-![](images/a)
+![](images/a.png)
 
 When it is a player's turn to play, the countries that they can reach are printed on the console. At the beginning of the game, the first player can only reach Iran, which they own, and the countries neighboring Iran: Turkey and Armenia. User is expected to type in the name of the country that they would like to attack: 
 
-![](images/b)
+![](images/b.png)
 
 After the player choses a country, they need to determine how many soldiers they would like to place. If the country they have chosen is owned by another player, this will be the number of soldiers they attack with!
 
-![](images/c)
+![](images/c.png)
 
 After this turn ends, another game map is printed. We can see that now the first player also owns Armenia, and they have placed 1 soldier on it. 
+
+![](images/d.png)
 
 
 ## Inspiration
