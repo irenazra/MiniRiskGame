@@ -1,12 +1,13 @@
-package Risk;
+package game;
 
 import java.util.*;
 
 public class GameBoard {
 
-    public static riskPlayer firstP;
-    public static riskPlayer secondP; 
-    public static  Map<String,Country> allCountries;
+
+    public riskPlayer firstP;
+    public riskPlayer secondP; 
+    public Map<String,Country> allCountries;
 
     public GameBoard() {
 
@@ -134,9 +135,8 @@ public class GameBoard {
 
 
         String one = "[Poland " + p + "][Ukraine " + u + "][Russia " + r + "]";
-        String two = "                         |   ";
-        String three = "        [Bulgaria " + b + "]      | [Armenia " + a + "]";
-        String four = "                  [Turkey " + t +"]         ";
+        String two = "                         |                               ";
+        String four = "            [Bulgaria " + b + "][Turkey " + t +"][Armenia " + a + "]         ";
         String five = "           [Greece " + g + "]       [Iran " + i + "]";
 
         System.out.println("--------------------------------------");
@@ -145,7 +145,6 @@ public class GameBoard {
         System.out.println("--------------------------------------");
         System.out.println(one);
         System.out.println(two);
-        System.out.println(three);
         System.out.println(four);
         System.out.println(five);
         System.out.println("--------------------------------------");
@@ -158,42 +157,50 @@ public class GameBoard {
         gb.printGameRules();
 
         
-        firstP.getSoldiers(3);
-        secondP.getSoldiers(3);
+        gb.firstP.getSoldiers(3);
+        gb.secondP.getSoldiers(3);
         gb.printGameState();
         Boolean firstsTurn = true; 
         while (true) {
 
             if (firstsTurn) {
-                firstP.getSoldiers( 1 + firstP.numSoldiers/2);
+                gb.firstP.getSoldiers( 1 + gb.firstP.numSoldiers/2);
                 firstsTurn = false; 
-                if ( firstP.numSoldiers < 1) {
+                if ( gb.firstP.numSoldiers < 1) {
                     System.out.println("The first player does not have enough soldiers to play.");
                     continue;
                 }
                 
                 
-                System.out.println("First player's turn! First player has " + firstP.numSoldiers + " soldiers to place.");
-                firstP.placeArmies();
+                System.out.println("First player's turn! First player has " + gb.firstP.numSoldiers + " soldiers to place.");
+                gb.firstP.placeArmies();
                 gb.printGameState();
-                if (firstP.didIWin()){
-                    System.out.println(firstP.theCountries);
+                if (gb.firstP.didIWin()){
+                    System.out.println("First player owns: ");
+                    for (int i = 0; i< gb.firstP.theCountries.size(); i ++) {
+                        System.out.println(gb.firstP.theCountries.get(i).name);
+                    }
+                    
                     System.out.println("First player won!");
                     break;
                 }
             } else {
-                secondP.getSoldiers(1 + secondP.numSoldiers/2);
+                gb.secondP.getSoldiers(1 + gb.secondP.numSoldiers/2);
                 firstsTurn = true; 
-                if (secondP.numSoldiers < 1) {
+                if (gb.secondP.numSoldiers < 1) {
                     System.out.println("The second player does not have enough soldiers to play.");
                     continue;
                 }
                 System.out.println("Second player's turn!");
-                secondP.placeArmies();
+                gb.secondP.placeArmies();
                 gb.printGameState();
-                if (secondP.didIWin()){
+                if (gb.secondP.didIWin()){
+                    System.out.println("Second player owns: ");
+                    for (int i = 0; i< gb.secondP.theCountries.size(); i ++) {
+                        System.out.println(gb.secondP.theCountries.get(i).name);
+                    }
+                    
                     System.out.println("Second player won!");
-                    System.out.println(secondP.theCountries);
                     break;
                 }
             }

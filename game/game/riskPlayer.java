@@ -1,4 +1,4 @@
-package Risk;
+package game;
 import java.util.*;
 public class riskPlayer{
     //countries
@@ -64,24 +64,21 @@ public class riskPlayer{
     public String getTarget() {
         Scanner sc =new Scanner(System.in); 
         String a= sc.nextLine();
-        sc.close();
         return a; 
     }
 
 
-    //YOU NEED TO HANDLE INPUT MISMATCHEXCEPTION HERE
+    
     public int getSoldierNumber () {
         Scanner sc =new Scanner(System.in); 
-        Boolean valid = sc.hasNextInt();
-        if (!valid) {
+        if (!sc.hasNextInt()) {
             System.out.println("Please enter an integer!");
-            sc.close();
             return -1; 
         }
         int a= sc.nextInt();
-        sc.close();
         return a; 
 
+    
     }
 
     public void placeArmies() {
@@ -103,9 +100,10 @@ public class riskPlayer{
         System.out.println("the target is " + target);
 
         System.out.println("How many soldiers would you like to send? You have " + numSoldiers + " soldiers.");
-        int b= getSoldierNumber();   
+        int b= getSoldierNumber(); 
         while (b==-1) {
-            b = getSoldierNumber(); 
+            System.out.println("You entered an invalid soldier number. Please try again!");
+            b = getSoldierNumber();
         }
         if (b > numSoldiers) {
             System.out.println("You do not have " + b + " soldiers. You will attack with all the soldiers you have which is " + numSoldiers);
@@ -116,7 +114,10 @@ public class riskPlayer{
             System.out.println("No enemy in " + target.name + "!");
             target.acceptArmy(b);
             target.owner = this;
-            theCountries.add(target);
+            if(!theCountries.contains(target)) {
+                theCountries.add(target);
+            }
+            
             
         } else {
             System.out.println("Oh no! " + target.owner.playerName+ "  owns" + target.name);

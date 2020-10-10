@@ -1,4 +1,4 @@
-package Risk;
+package game;
 import java.util.*;
 
 
