@@ -1,4 +1,4 @@
-# MiniRiskGame
+# Mini Risk Game
 A mini version of famous strategy game Risk: MiniRiskGame. 
 
 ## Game Rules
