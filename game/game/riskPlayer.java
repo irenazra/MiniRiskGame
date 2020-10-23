@@ -57,9 +57,9 @@ public class riskPlayer{
         int numSoldiersOnCo = co.armySize;
         int dice = rand.nextInt(6) + 1;
         System.out.println(playerName + " rolled " + dice); 
-        int defendPower = dice * numSoldiersOnCo;
+        return dice * numSoldiersOnCo;
 
-        return defendPower; 
+       
 
     }
 
@@ -112,8 +112,8 @@ public class riskPlayer{
      */
     public String getTarget() {
         Scanner sc =new Scanner(System.in); 
-        String a= sc.nextLine();
-        return a; 
+        return sc.nextLine();
+      
     }
 
 
@@ -128,8 +128,7 @@ public class riskPlayer{
             System.out.println("Please enter an integer!");
             return -1; 
         }
-        int a= sc.nextInt();
-        return a; 
+        return sc.nextInt();
 
     
     }
