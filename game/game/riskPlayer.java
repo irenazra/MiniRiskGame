@@ -10,17 +10,17 @@ import java.util.*;
 public class riskPlayer{
 
     //all the countries in the game
-    public Map<String,Country> countries = new HashMap<String, Country>();
+    protected Map<String,Country> countries = new HashMap<String, Country>();
 
     //countries that this player owns
-    public List<Country> theCountries; 
+    protected List<Country> theCountries; 
 
-    public Random rand = new Random();
+    protected Random rand = new Random();
 
     //number of soldiers that can be freely placed to any of player's territory or any adjacent territories
-    public int numSoldiers = 0; 
+    protected int numSoldiers = 0; 
 
-    public String playerName ="";
+    protected String playerName ="";
 
 
     /**

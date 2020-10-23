@@ -21,9 +21,9 @@ import java.util.*;
 public class GameBoard {
 
 
-    public riskPlayer firstP;
-    public riskPlayer secondP; 
-    public Map<String,Country> allCountries;
+    protected riskPlayer firstP;
+    protected riskPlayer secondP; 
+    protected Map<String,Country> allCountries;
 
     /**
      * Initializes a new GameBoard
